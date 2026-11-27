@@ -328,7 +328,9 @@ const esbuild = require('esbuild')
 // name is read as that fragment (lib/interpreter-core.js dynamicRefUri), as
 // the suite at e2a68a1 writes it, and the buffer APIs route that spelling
 // through validate(); 48 bytes.
-const BUDGET = 63540
+// 63700 (63687 measured): exact decimal multipleOf (lib/multiple-of.js, and
+// the helper the code generator writes into a program); 153 bytes.
+const BUDGET = 63700
 
 const result = esbuild.buildSync({
   entryPoints: [path.join(__dirname, '..', 'lite.mjs')],

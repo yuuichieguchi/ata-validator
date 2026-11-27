@@ -185,7 +185,9 @@ const root = path.resolve(__dirname, '..');
     // anchor name is read as that fragment (lib/interpreter-core.js
     // dynamicRefUri), and the buffer APIs route that spelling through
     // validate(); 72 bytes.
-    assert.ok(size < 68650, `the Workers bundle is ${size} bytes gzipped, over 68650`);
+    // 68820 bytes (68810 measured): exact decimal multipleOf
+    // (lib/multiple-of.js); 166 bytes.
+    assert.ok(size < 68820, `the Workers bundle is ${size} bytes gzipped, over 68820`);
     const browser = build(['browser'], 'browser');
     assert.ok(shipped(browser).some((k) => /codegen-engine/.test(k)), 'a browser bundle keeps the code generator');
     // A bundle for Node (the `module` condition, which esbuild, Rollup and

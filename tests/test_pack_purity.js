@@ -394,6 +394,8 @@ for (const [name, ver] of Object.entries(pkg.optionalDependencies)) {
 // tests and Bowtie ask (pattern and additional properties, contains,
 // dependentSchemas, $ref and $dynamicRef, unevaluated*, unknown keywords),
 // in lib/output-format.js, which only a toOutput call loads. Measured 694.0 KB.
-assert.ok(manifest.size < 695 * 1024, `tarball ${manifest.size} bytes exceeds ceiling (adjust only with a reviewed reason)`);
+// 698 KB with exact decimal multipleOf (lib/multiple-of.js and its kernels
+// copy lib/kernels/multiple-of.mjs). Measured 696.3 KB.
+assert.ok(manifest.size < 698 * 1024, `tarball ${manifest.size} bytes exceeds ceiling (adjust only with a reviewed reason)`);
 
 console.log(`ok: core tarball is pure JS (${files.length} files, ${manifest.size} bytes packed)`);
