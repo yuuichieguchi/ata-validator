@@ -399,6 +399,9 @@ for (const [name, ver] of Object.entries(pkg.optionalDependencies)) {
 // 700 KB with the multipleOf short path for decimal divisors
 // (lib/multiple-of.js, its kernels copy, and the plans and generators that
 // carry the pair). Measured 698.9 KB.
-assert.ok(manifest.size < 700 * 1024, `tarball ${manifest.size} bytes exceeds ceiling (adjust only with a reviewed reason)`);
+// 702 KB with the quotient test for two safe integers in multipleOf
+// (lib/multiple-of.js, its kernels copy, the plans and the generators).
+// Measured 700.6 KB.
+assert.ok(manifest.size < 702 * 1024, `tarball ${manifest.size} bytes exceeds ceiling (adjust only with a reviewed reason)`);
 
 console.log(`ok: core tarball is pure JS (${files.length} files, ${manifest.size} bytes packed)`);

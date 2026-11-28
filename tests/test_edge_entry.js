@@ -191,7 +191,10 @@ const root = path.resolve(__dirname, '..');
     // decimal places answered without BigInt when the scaled value is within
     // 1e15 (lib/multiple-of.js, and the plans that carry the pair); 288
     // bytes.
-    assert.ok(size < 69110, `the Workers bundle is ${size} bytes gzipped, over 69110`);
+    // 69280 bytes (69264 measured): multipleOf with an integer divisor
+    // tests two safe integers by their quotient, in place of the remainder
+    // (lib/multiple-of.js, and the kind the plans carry); 166 bytes.
+    assert.ok(size < 69280, `the Workers bundle is ${size} bytes gzipped, over 69280`);
     const browser = build(['browser'], 'browser');
     assert.ok(shipped(browser).some((k) => /codegen-engine/.test(k)), 'a browser bundle keeps the code generator');
     // A bundle for Node (the `module` condition, which esbuild, Rollup and

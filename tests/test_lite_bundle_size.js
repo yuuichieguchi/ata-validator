@@ -334,7 +334,10 @@ const esbuild = require('esbuild')
 // is split once at compile time and answered without BigInt when the scaled
 // value is within 1e15 (decimalDivisor and multipleOfFast in
 // lib/multiple-of.js, and the plans that carry the pair); 297 bytes.
-const BUDGET = 64000
+// 64150 (64140 measured): multipleOf with an integer divisor tests two
+// safe integers by their quotient in every engine, in place of the remainder
+// (lib/multiple-of.js, and the kind the plans carry); 156 bytes.
+const BUDGET = 64150
 
 const result = esbuild.buildSync({
   entryPoints: [path.join(__dirname, '..', 'lite.mjs')],
