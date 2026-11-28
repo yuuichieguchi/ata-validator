@@ -187,7 +187,11 @@ const root = path.resolve(__dirname, '..');
     // validate(); 72 bytes.
     // 68820 bytes (68810 measured): exact decimal multipleOf
     // (lib/multiple-of.js); 166 bytes.
-    assert.ok(size < 68820, `the Workers bundle is ${size} bytes gzipped, over 68820`);
+    // 69110 bytes (69098 measured): a multipleOf divisor of 1 to 15
+    // decimal places answered without BigInt when the scaled value is within
+    // 1e15 (lib/multiple-of.js, and the plans that carry the pair); 288
+    // bytes.
+    assert.ok(size < 69110, `the Workers bundle is ${size} bytes gzipped, over 69110`);
     const browser = build(['browser'], 'browser');
     assert.ok(shipped(browser).some((k) => /codegen-engine/.test(k)), 'a browser bundle keeps the code generator');
     // A bundle for Node (the `module` condition, which esbuild, Rollup and

@@ -330,7 +330,11 @@ const esbuild = require('esbuild')
 // through validate(); 48 bytes.
 // 63700 (63687 measured): exact decimal multipleOf (lib/multiple-of.js, and
 // the helper the code generator writes into a program); 153 bytes.
-const BUDGET = 63700
+// 64000 (63984 measured): a multipleOf divisor of 1 to 15 decimal places
+// is split once at compile time and answered without BigInt when the scaled
+// value is within 1e15 (decimalDivisor and multipleOfFast in
+// lib/multiple-of.js, and the plans that carry the pair); 297 bytes.
+const BUDGET = 64000
 
 const result = esbuild.buildSync({
   entryPoints: [path.join(__dirname, '..', 'lite.mjs')],

@@ -396,6 +396,9 @@ for (const [name, ver] of Object.entries(pkg.optionalDependencies)) {
 // in lib/output-format.js, which only a toOutput call loads. Measured 694.0 KB.
 // 698 KB with exact decimal multipleOf (lib/multiple-of.js and its kernels
 // copy lib/kernels/multiple-of.mjs). Measured 696.3 KB.
-assert.ok(manifest.size < 698 * 1024, `tarball ${manifest.size} bytes exceeds ceiling (adjust only with a reviewed reason)`);
+// 700 KB with the multipleOf short path for decimal divisors
+// (lib/multiple-of.js, its kernels copy, and the plans and generators that
+// carry the pair). Measured 698.9 KB.
+assert.ok(manifest.size < 700 * 1024, `tarball ${manifest.size} bytes exceeds ceiling (adjust only with a reviewed reason)`);
 
 console.log(`ok: core tarball is pure JS (${files.length} files, ${manifest.size} bytes packed)`);
